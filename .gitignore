@@ -1,2 +1,7 @@
 dataset/*
 *.pyc
+*/build/*
+*/install/*
+*/Amazon/*
+*/Reddit/*
+*/Yelp/*
