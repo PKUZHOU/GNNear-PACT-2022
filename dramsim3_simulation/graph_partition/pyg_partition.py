@@ -20,7 +20,7 @@ robbin_num = {
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Script for partitioning Pyg\'s graph data')
-    parser.add_argument('--dataset_root_path', type=str, default='~/datasets/Graph/', help='root directory to save all graph datasets')
+    parser.add_argument('--dataset_root_path', type=str, default='../../dataset/', help='root directory to save all graph datasets')
     parser.add_argument('--dataset_name', type=str, default='Reddit', help='PyG dataset name: Yelp or Reddit')
 
     args = parser.parse_args()

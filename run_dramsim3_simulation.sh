@@ -24,12 +24,12 @@ cd ${PROJECT_DIR}/dramsim3_simulation/graph_partition
 if [ -d "$ogb_folder" ]; then
     echo "Amazon data has already generated"
 else
-    python ogb_partition.py
+    python ogb_partition.py --dataset_root_path ${PROJECT_DIR}/dataset/
 fi 
 if [ -d "$pyg_folder" ]; then
     echo "Reddit data has already generated"
 else
-    python pyg_partition.py
+    python pyg_partition.py --dataset_root_path ${PROJECT_DIR}/dataset/
 fi
 
 # build main projects

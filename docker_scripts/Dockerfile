@@ -22,4 +22,5 @@ RUN pip install --no-cache-dir  matplotlib==3.3.4 ogb==1.3.1 pynvml==11.0.0 tqdm
 RUN pip install dgl-cu102 dglgo -f https://data.dgl.ai/wheels/repo.html 
 RUN pip install torch-geometric==1.7.2
 
+RUN apt-get update  && apt-get install zlib1g-dev
 WORKDIR /workspace

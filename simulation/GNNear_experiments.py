@@ -472,6 +472,8 @@ def throughput_comparison(args):
 def parse_args():
     parser = argparse.ArgumentParser(description='Artifact for experiments in GNNear')
     parser.add_argument('--dataset_root_dir', type=str, default='./dataset/', help='root directory to save all graph datasets')
+    parser.add_argument('--results_dir', type=str, default='./results/', help='root directory to save all results')
+
     # experiments
     parser.add_argument('--throughput', action='store_true', help='run Training Throughput Comparison experiments')
     parser.add_argument('--breakdown', action='store_true', help='run Speedup Breakdown experiments')
@@ -489,41 +491,48 @@ def parse_args():
 
 def main():
     args = parse_args()
-    if not os.path.exists('./results'):
-        os.mkdir('./results')
+    if not os.path.exists(args.results_dir):
+        os.mkdir(args.results_dir)
     if args.throughput:
-        if not os.path.exists('./results/throughput/'):
-            os.mkdir('./results/throughput/')
+        res_path = os.path.join(args.results_dir,"throughput/")
+        if not os.path.exists(res_path):
+            os.mkdir(res_path)
         throughput_comparison(args)
         return
     elif args.breakdown:
-        if not os.path.exists('./results/breakdown'):
-            os.mkdir('./results/breakdown')
+        res_path = os.path.join(args.results_dir,"breakdown/")
+        if not os.path.exists(res_path):
+            os.mkdir(res_path)
         speed_up_breakdown_mp(args)
         return
     elif args.ieo:
-        if not os.path.exists('./results/ieo'):
-            os.mkdir('./results/ieo')
+        res_path = os.path.join(args.results_dir,"ieo/")
+        if not os.path.exists(res_path):
+            os.mkdir(res_path)
         ieo_comparison(args)
         return
     elif args.shard:
-        if not os.path.exists('./results/shard'):
-            os.mkdir('./results/shard')
+        res_path = os.path.join(args.results_dir,"shard/")
+        if not os.path.exists(res_path):
+            os.mkdir(res_path)
         shard_size_exploration_mp(args)
         return
     elif args.window:
-        if not os.path.exists('./results/window'):
-            os.mkdir('./results/window')
+        res_path = os.path.join(args.results_dir,"window/")
+        if not os.path.exists(res_path):
+            os.mkdir(res_path)
         window_size_exploreation_mp(args)
         return
     elif args.ratio:
-        if not os.path.exists('./results/ratio'):
-            os.mkdir('./results/ratio')
+        res_path = os.path.join(args.results_dir,"ratio/")
+        if not os.path.exists(res_path):
+            os.mkdir(res_path)
         ratio_exploration_mp(args)
         return
     elif args.rank:
-        if not os.path.exists('./results/rank'):
-            os.mkdir('./results/rank')
+        res_path = os.path.join(args.results_dir,"rank/")
+        if not os.path.exists(res_path):
+            os.mkdir(res_path)
         rank_exploration_mp(args)
         return
         

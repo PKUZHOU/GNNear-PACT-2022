@@ -5,20 +5,16 @@ This is the artifact of paper "GNNear: Accelerating Full-Batch Training of Graph
 
 ## Requirements
 
-  You need to provide the following environment to run all of the Python scripts in our artifact.
-
-- Python 3.7.10
-- Packages
-  ```
-  pip install -U pip setuptools
-  pip install -r requirements.txt
-  ```
+  We provide a docker image to setup the environment. Please run ```./enter_docker_env.sh``` to enter the environment. 
+  You can also build the docker image by running ```./build_docker_gpu.sh``` in the ```docker_scripts``` folder
 
 ## Usage
 
-### DGL Training Profile
+### DGL Training Profile (Optional)
 
-We provide CPU/GPU training scripts using [DGL](https://www.dgl.ai/) framework in ```dgl_training_profile```. You can run ```train_epoch.py``` and set arguments to decide the configurations you want to run:
+You can modify and run  ```run_dhl_train_profile.sh``` to conduct these CPU/GPU training experiments.
+
+Alternatively, you can run ```train_epoch.py``` and set arguments to decide the configurations you want to run:
 
   ```
   python train_epoch.py [--dataset_root_dir DATASET_ROOT_DIR] [--device DEVICE] 
@@ -37,14 +33,14 @@ We provide CPU/GPU training scripts using [DGL](https://www.dgl.ai/) framework i
 
 -  ```--hidden_dim HIDDEN_DIM```: Set the input/output dim of hidden layers. The default dim is ```256```.
 
-Alternatively, you can also modify and run  ```run_dhl_train_profile.sh``` to conduct these CPU/GPU training experiments.
+This step is not necessary since we will use the previously profiled results for comparison to avoid performance number mismatching caused by hardware differences and other unstable factors.   
 
-
-### DRAMsim3 Simulation
-
+### DRAMsim3 Simulation  (Optional)
 To validate our architectue design, we implement a fine-grained simulator based on [DRAMsim3](https://github.com/umd-memsys/DRAMsim3) and [cnpy](https://github.com/rogersce/cnpy). This simulator can simulate one channel's DIMMs' behaviour on different graph datasets. 
 
-To use this simulator, you should conduct the following steps:
+You can run ```run_dramsim3_simulation.sh``` to start simulation. The results will be saved in ```results``` in the main directory. The experiments will take a long time to finish. This step is optional, you can skip it if you do not want to wait. 
+
+You can also run the steps manually:
 - ```cd dramsim3_simulation/ext/cnpy```, then follow the ```README.md``` to generate dynamic library of cnpy. You can directly run ```compile.sh``` in this folder.
 
 - ```cd graph_partition```, use the scripts to split graph data and save  them in ```.npz``` format. Currently, our simulator injects the meta-data of ```Amazon``` and ```Reddit``` datasets, you can also add other datasets in ```dramsim3_simulation/src/graph_settings.h```.
@@ -55,7 +51,6 @@ To use this simulator, you should conduct the following steps:
 
 You can see the results in ```dramsim3_simulation/results```. Each DIMM will report in DRAMsim3's manner.
 
-Alternatively, you can also run ```run_dramsim3_simulation.sh``` to start simulation. The results will be saved in ```results``` in the main directory.
 
 ### Coarse-Grained Simulation
 
@@ -82,6 +77,10 @@ We provide Python scripts to fastly simulate DRAMSim3's behaviour in a corse-gra
 
 - ```--rank```: If this option is on, ranks per DIMM experiment will be conducted, and the results will be saved in ```./results/rank/```
 
-Alternatively, you can also modify and run ```run_simulation.sh``` to directly conduct one of these experiments.
+Alternatively, you can also modify and run ```run_coarse_grained_simulation.sh``` to directly conduct all of these experiments.
 
-Note that these experiments will result in large memory occupation (typically GB level) and we utilize mutiprocessing to parallize different cases, so we recommend to run one experiment every time to avoid OOM problem. 
+The experiments will take about 10 hours to finish. You can run the experiments in a tmux environment (type```tmux``` to enter the shell and  run ```tmux a``` to re-enter the shell. The processes running in a tmux shell will not be terminated even if you close the remote ssh).
+
+### Results Validation
+
+After the experiments finish, you can compare the results figures with the papers'. ```results/throughput``` should match Figure-17. ```results/breakdown``` should match Figure-19-a, ```results/ieo``` should match Figure-19-b. ```results/{rank,ratio,shard,window}``` should match Figure-21. 

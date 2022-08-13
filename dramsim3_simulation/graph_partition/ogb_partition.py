@@ -19,7 +19,7 @@ robbin_num = {
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Script for partitioning OGB\'s graph data')
-    parser.add_argument('--dataset_root_path', type=str, default='~/datasets/Graph/', help='root directory to save all graph datasets')
+    parser.add_argument('--dataset_root_path', type=str, default='../../dataset/', help='root directory to save all graph datasets')
     parser.add_argument('--dataset_name', type=str, default='Amazon', help='PyG dataset name: Amazon or Protein')
 
     args = parser.parse_args()
