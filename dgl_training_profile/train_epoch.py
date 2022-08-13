@@ -104,7 +104,7 @@ def main(args):
     if use_device == 'cpu':
         device = torch.device('cpu')
     else:
-        device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+        device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     if dataset_name == 'reddit':
         model = Net(602, dataset.num_classes, hidden, n_layers,  model_name).to(device)
     else:
