@@ -12,7 +12,7 @@ This is the artifact of paper "GNNear: Accelerating Full-Batch Training of Graph
 
 ### DGL Training Profile (Optional)
 
-You can modify and run  ```run_dhl_train_profile.sh``` to conduct these CPU/GPU training experiments.
+You can modify and run  ```run_dgl_train_profile.sh``` to conduct these CPU/GPU training experiments.
 
 Alternatively, you can run ```train_epoch.py``` and set arguments to decide the configurations you want to run:
 
