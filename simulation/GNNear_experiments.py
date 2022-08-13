@@ -124,7 +124,10 @@ def ratio_exploration_mp(args):
 
 def shard_size_exploration_mp(args):
     print('------Shard Size Exploration------')
-    all_dataset = ['PT', 'RD', 'YP', 'AM']
+    if(args.quick):
+        all_dataset = ['PT']
+    else:
+        all_dataset = ['PT', 'RD', 'YP', 'AM']
 
     def shard_size_eval(shard_size, dataset_name, dataset_root_dir, queue):
         dataset = Dataset(dataset_name, dataset_root_path=dataset_root_dir)
@@ -182,7 +185,10 @@ def shard_size_exploration_mp(args):
 
 def window_size_exploreation_mp(args):
     print('------Window Size Exploration------')
-    all_dataset = ['PT', 'RD', 'YP', 'AM']
+    if(args.quick):
+        all_dataset = ['PT']
+    else:
+        all_dataset = ['PT', 'RD', 'YP', 'AM']
 
     def window_size_eval(window_size, dataset_name, dataset_root_dir, queue):
         dataset = Dataset(dataset_name, dataset_root_path=dataset_root_dir)
@@ -355,7 +361,11 @@ def speed_up_breakdown_mp(args):
 
 def throughput_comparison(args):
     print('------Throughput Comparison------')
-    all_model = ['GCN', 'GIN', 'SAGEConv', 'GAT']
+    if(args.quick):
+        all_model = ['GCN']
+    else:
+        all_model = ['GCN', 'GIN', 'SAGEConv', 'GAT']
+    
     all_dataset = ['PT', 'RD', 'YP', 'AM']
 
     CPU_results = {
@@ -462,7 +472,7 @@ def throughput_comparison(args):
 def parse_args():
     parser = argparse.ArgumentParser(description='Artifact for experiments in GNNear')
     parser.add_argument('--dataset_root_dir', type=str, default='./dataset/', help='root directory to save all graph datasets')
-    
+    # experiments
     parser.add_argument('--throughput', action='store_true', help='run Training Throughput Comparison experiments')
     parser.add_argument('--breakdown', action='store_true', help='run Speedup Breakdown experiments')
     parser.add_argument('--ieo', action='store_true', help='run Interchange Execution Order experiments')
@@ -470,7 +480,9 @@ def parse_args():
     parser.add_argument('--window', action='store_true', help='run Window Size Exploration experiments')
     parser.add_argument('--ratio', action='store_true', help='run Duplication Ratio Exploration experiments')
     parser.add_argument('--rank', action='store_true', help='run Rank Number Exploration experiments')
-    
+    # quick eval ?
+    parser.add_argument('--quick', action='store_true', help='only run one model for each expeirment for quick validation')
+
     args = parser.parse_args()
     return args
 

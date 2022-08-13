@@ -4,13 +4,13 @@ import tqdm
 from ogb.nodeproppred import PygNodePropPredDataset
 from torch_geometric.datasets import Reddit, Yelp
 
-dataset_name = 'AM'
+dataset_name = 'RD'
 
 standard_frequency = 1e9
 
 
 class Dataset:
-    def __init__(self, dataset_name, dataset_root_path='~/datasets/Graph/') -> None:
+    def __init__(self, dataset_name, dataset_root_path='./dataset/') -> None:
         self.legal_datasets = ['RD', 'AM', 'PT', 'YP']
         self.dataset_name = dataset_name
         self.dataset_root_path = dataset_root_path
@@ -33,7 +33,7 @@ class Dataset:
         if self.dataset_name == 'AM':
             self.input_feature_size = 100
             self.n_labels = 47
-            self.graph = PygNodePropPredDataset(name="ogbn-products", root="~/datasets/Graph/")
+            self.graph = PygNodePropPredDataset(name="ogbn-products", root=self.dataset_root_path)
         if self.dataset_name == 'PT':
             self.input_feature_size = 128
             self.n_labels = 112

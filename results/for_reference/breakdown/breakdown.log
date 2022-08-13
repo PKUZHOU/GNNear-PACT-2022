@@ -1,0 +1,42 @@
+CPU baseline time is 17.99
+only CAE is 3.64 times faster than CPU baseline
+Near-Memory Reduction is 3.76 times faster than only CAE
+Narrow Shard is 1.08 times faster than Near-Memory Reduction
+HGP/Interval Scheduling is 1.19 times faster than Narrow Shard
+Inter-Shard Overlapping is 1.10 times faster than HGP/Interval Scheduling
+CPU baseline time is 17.99
+only CAE is 3.64 times faster than CPU baseline
+Near-Memory Reduction is 3.76 times faster than only CAE
+Narrow Shard is 1.08 times faster than Near-Memory Reduction
+HGP/Interval Scheduling is 1.19 times faster than Narrow Shard
+Inter-Shard Overlapping is 1.10 times faster than HGP/Interval Scheduling
+CPU baseline time is 17.99
+only CAE is 3.64 times faster than CPU baseline
+Near-Memory Reduction is 3.76 times faster than only CAE
+Narrow Shard is 1.08 times faster than Near-Memory Reduction
+HGP/Interval Scheduling is 1.19 times faster than Narrow Shard
+Inter-Shard Overlapping is 1.10 times faster than HGP/Interval Scheduling
+CPU baseline time is 17.99
+only CAE is 3.64 times faster than CPU baseline
+Near-Memory Reduction is 3.76 times faster than only CAE
+Narrow Shard is 1.08 times faster than Near-Memory Reduction
+HGP/Interval Scheduling is 1.19 times faster than Narrow Shard
+Inter-Shard Overlapping is 1.10 times faster than HGP/Interval Scheduling
+CPU baseline time is 17.99
+only CAE is 3.64 times faster than CPU baseline
+Near-Memory Reduction is 3.76 times faster than only CAE
+Narrow Shard is 1.08 times faster than Near-Memory Reduction
+HGP/Interval Scheduling is 1.19 times faster than Narrow Shard
+Inter-Shard Overlapping is 1.10 times faster than HGP/Interval Scheduling
+CPU baseline time is 17.99
+only CAE is 3.64 times faster than CPU baseline
+Near-Memory Reduction is 3.76 times faster than only CAE
+Narrow Shard is 1.08 times faster than Near-Memory Reduction
+HGP/Interval Scheduling is 1.19 times faster than Narrow Shard
+Inter-Shard Overlapping is 1.10 times faster than HGP/Interval Scheduling
+CPU baseline time is 17.99
+only CAE is 3.64 times faster than CPU baseline
+Near-Memory Reduction is 3.76 times faster than only CAE
+Narrow Shard is 1.08 times faster than Near-Memory Reduction
+HGP/Interval Scheduling is 1.19 times faster than Narrow Shard
+Inter-Shard Overlapping is 1.10 times faster than HGP/Interval Scheduling
