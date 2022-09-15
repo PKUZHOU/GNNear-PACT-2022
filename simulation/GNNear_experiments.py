@@ -381,10 +381,10 @@ def throughput_comparison(args):
         'GAT' : {'PT':0.74, 'RD':1.39, 'YP':0.40, 'AM':3.24}
     }
     GNNear_results = {
-        'GCN':None,
-        'GIN':None,
-        'SAGEConv':None,
-        'GAT':None
+        'GCN':{},
+        'GIN':{},
+        'SAGEConv':{},
+        'GAT':{}
     }
 
     def simulate(model, dataset_name, que):
@@ -446,9 +446,9 @@ def throughput_comparison(args):
         ax1.set_ylabel('Norm. Throughput')
         ax1.set_yscale('log')
         # bars
-        CPU_perf = list(CPU_results[model].values())
-        GPU_perf = list(GPU_results[model].values())
-        GNNear_perf = list(GNNear_results[model].values())
+        CPU_perf = [CPU_results[model][dataset] for dataset in all_dataset]
+        GPU_perf = [GPU_results[model][dataset] for dataset in all_dataset]
+        GNNear_perf = [GNNear_results[model][dataset] for dataset in all_dataset]
         normed_CPU = [1, 1, 1, 1]
         normed_GPU = [(CPU_perf[i]/GPU_perf[i] if GPU_perf[i]!=0 else 0) for i in range(len(all_dataset))]
         normed_GNNear = [CPU_perf[i]/GNNear_perf[i] for i in range(len(all_dataset))]
@@ -460,7 +460,7 @@ def throughput_comparison(args):
         ax2 = ax1.twinx()
         ax2.set_ylabel('CPU Sec/Epoch')
         # ax2.set_yticks([0, 20, 40, 60])
-        ax2.plot(x+bar_width, CPU_results[model].values(), marker='^', label = 'DGL-CPU Sec/Epoch')
+        ax2.plot(x+bar_width, CPU_perf, marker='^', label = 'DGL-CPU Sec/Epoch')
         ax2.legend()
 
         plt.savefig('./results/throughput/%s.png' % model)
